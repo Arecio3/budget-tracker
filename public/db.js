@@ -1,22 +1,22 @@
 let db;
-let budgetVersion;
+
 
 // Create a new db request for a "budget" database.
-const request = indexedDB.open('BudgetDB', budgetVersion || 21);
+const request = indexedDB.open('budget', 21);
 
 request.onupgradeneeded = function (e) {
   console.log('Upgrade needed in IndexDB');
 
-  const { oldVersion } = e;
-  const newVersion = e.newVersion || db.version;
+  // const { oldVersion } = e;
+  // const newVersion = e.newVersion || db.version;
 
-  console.log(`DB Updated from version ${oldVersion} to ${newVersion}`);
+  // console.log(`DB Updated from version ${oldVersion} to ${newVersion}`);
 
   db = e.target.result;
-
-  if (db.objectStoreNames.length === 0) {
-    db.createObjectStore('BudgetStore', { autoIncrement: true });
-  }
+  db.createObjectStore('BudgetStore', { autoIncrement: true })
+  // if (db.objectStoreNames.length === 0) {
+  //   db.createObjectStore('BudgetStore', { autoIncrement: true });
+  // }
 };
 
 request.onerror = function (e) {
@@ -52,7 +52,7 @@ function checkDatabase() {
           // If our returned response is not empty
           if (res.length !== 0) {
             // Open another transaction to BudgetStore with the ability to read and write
-            transaction = db.transaction(['BudgetStore'], 'readwrite');
+           const transaction = db.transaction(['BudgetStore'], 'readwrite');
 
             // Assign the current store to a variable
             const currentStore = transaction.objectStore('BudgetStore');
