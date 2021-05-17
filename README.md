@@ -12,6 +12,8 @@
   # Description 
 This is a full stack appliaction used to add your transactions to a database, also has full offline capability with the help of indexedDB 
 
+<img src="public/images/Screen Shot 2021-05-17 at 5.32.52 PM.png"></img>
+
   # Live Site
   [Site](https://peaceful-dusk-61305.herokuapp.com/)
   
